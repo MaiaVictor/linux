@@ -1,0 +1,7 @@
+map <c-h> previousTab
+map <c-l> nextTab
+map u goBack
+map U goForward
+map J scrollPageDown
+map K scrollPageUp
+
