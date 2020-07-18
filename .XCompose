@@ -15,6 +15,6 @@ include "%L"   # import the default Compose file for your locale
 <Multi_key> <x> : "*"
 <Multi_key> <n> : "¬"
 <Multi_key> <m> : "-"
-<Multi_key> </> : "´"
-<Multi_key> <\> : "`"
+<Multi_key> <slash> : "´"
+<Multi_key> <backslash> : "`"
 <Multi_key> <Multi_key> : ";"

@@ -2,13 +2,19 @@
 
 - sudo mv us /usr/share/X11/xkb/symbols
 
-- setxkbmap -option "lv3:caps_switch"
+- For Gnome:
 
-- setxkbmap -option "ctrl:swap_lalt_lctl"
+  - setxkbmap -option "lv3:caps_switch"
 
-... ou ...
+  - setxkbmap -option "ctrl:swap_lalt_lctl"
 
-- gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:swap_lalt_lctl', 'lv3:capslock']"
+  ... ou ...
+
+  - gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:swap_lalt_lctl', 'lv3:capslock']"
+
+- For BSPWM:
+  
+  - Added `~/.Xmodmap`
 
 ## Browser
 
@@ -20,6 +26,17 @@
 
 - To remap <c-h> and <c-l> to PrevTab and NextTab, we must compile the Shortkeys extension. Check: https://askubuntu.com/questions/1259974/is-it-possible-to-remap-prevtab-and-nexttab-to-c-h-and-c-l-on-chrome-brave/1259983#1259983
 
-## Config
+## BSPWM
 
-- ~/.config/user-dirs.dirs
+- Added `/etc/X11/xorg.conf.d/90-touchpad.conf` to make natural scrolling
+  possible (https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/)
+
+- Added `~/.Xresources` for DPI scaling (200%)  
+
+- Added `~/.config/bspwm/bspwmrc` and `~/.config/sxhkd/sxhkdrc`
+
+## Readlist
+
+- https://dotfiles.github.io/tutorials/
+
+- http://eirenicon.org/knowledge-base/building-a-bspwm-desktop-a-guide/
