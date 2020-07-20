@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var child_process = require("child_process");
+var os = require("os");
 
 function axec(cmd) {
   return new Promise((resolve, reject) => {
@@ -68,19 +69,62 @@ function get_window() {
   `);
 };
 
-var date = null;
-var battery = null;
-var volume = null;
-var window = null;
+//console.log(get_cpu());
+//process.exit();
+
+var date = "_";
+var battery = "_";
+var volume = "_";
+var window = "_";
+var cpu = "_";
+var mem = "_";
+
+var cpu_last_used = []; 
+var cpu_last_idle = [];
+function refresh_cpu() {
+  var cpus = os.cpus();
+  var cpu_curr_used = [];
+  var cpu_curr_idle = [];
+  for (var i = 0; i < cpus.length; ++i) {
+    cpu_last_used[i] = cpu_last_used[i] || 0;
+    cpu_last_idle[i] = cpu_last_idle[i] || 0;
+    cpu_curr_used[i] = cpu_curr_used[i] || 0;
+    cpu_curr_idle[i] = cpu_curr_idle[i] || 0;
+  }
+  for (var i = 0; i < cpus.length; ++i) {
+    cpu_curr_used[i] += cpus[i].times.user;
+    cpu_curr_used[i] += cpus[i].times.nice;
+    cpu_curr_used[i] += cpus[i].times.sys;
+    cpu_curr_used[i] += cpus[i].times.irq;
+    cpu_curr_idle[i] += cpus[i].times.idle;
+  }
+  var txt = "";
+  for (var i = 0; i < cpu_curr_used.length; ++i) {
+    var used = cpu_curr_used[i] - cpu_last_used[i];
+    var idle = cpu_curr_idle[i] - cpu_last_idle[i];
+    txt += (i?" ":"")+pad(2, "0", Math.min(Math.floor(used / idle * 100),99));
+  }
+  for (var i = 0; i < cpu_curr_used.length; ++i) {
+    cpu_last_used[i] = cpu_curr_used[i];
+    cpu_last_idle[i] = cpu_curr_idle[i];
+  }
+  txt += " cpu";
+  cpu = txt;
+};
+setInterval(refresh_cpu, 1000);
+
+function refresh_mem() {
+  var free = os.freemem();
+  var total = os.totalmem();
+  mem = String(Math.floor((total - free) / total * 100)) + " mem";
+};
+setInterval(refresh_mem, 1000);
 
 function refresh() {
   date = get_date();
   battery = get_battery();
   volume = get_volume();
   window = get_window();
-  console.log(`Victor Maia%{c}${window}%{r}${volume} | ${battery} | ${date}`);
+  console.log(`${cpu} | ${mem}%{c}${window}%{r}${volume} | ${battery} | ${date}`);
 };
-
-setInterval(() => {
-  refresh();
-}, 250);
+setInterval(refresh, 250);
