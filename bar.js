@@ -40,13 +40,14 @@ function get_date() {
 
 function get_battery() {
   var txt = exec("acpi --battery");
-  txt = txt.slice(txt.indexOf(":")+2, -1);
+  var ini = txt.indexOf(":");
+  txt = txt.slice(ini+2, ini+10);
   txt = txt.replace("Discharging, ", "");
   txt = txt.replace("Charging, ", "+");
   txt = txt.replace(" remaining", "");
   txt = txt.slice(0,-3);
   txt = txt.replace(", ", " ");
-  txt = txt + "h left";
+  txt = txt + "h";
   return txt;
 };
 
@@ -111,7 +112,7 @@ function refresh_cpu() {
   txt += " cpu";
   cpu = txt;
 };
-setInterval(refresh_cpu, 1000);
+setInterval(refresh_cpu, 5000);
 
 function refresh_mem() {
   var free = os.freemem();
@@ -127,4 +128,4 @@ function refresh() {
   window = get_window();
   console.log(`${cpu} | ${mem}%{c}${window}%{r}${volume} | ${battery} | ${date}`);
 };
-setInterval(refresh, 250);
+setInterval(refresh, 1000);

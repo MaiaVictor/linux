@@ -35,6 +35,8 @@
 
 - Added `~/.config/bspwm/bspwmrc` and `~/.config/sxhkd/sxhkdrc`
 
+- Install `refshift`.
+
 ## Font stuff
 
 - The `fontsel` command allows me to pick a font that can then be passed to
