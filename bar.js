@@ -40,16 +40,18 @@ function get_date() {
 
 function get_battery() {
   var txt = exec("acpi --battery");
-  var ini = txt.indexOf(":");
-  txt = txt.slice(ini+2, ini+10);
-  txt = txt.replace("Discharging, ", "");
-  txt = txt.replace("Charging, ", "+");
-  txt = txt.replace(" remaining", "");
-  txt = txt.slice(0,-3);
-  txt = txt.replace(", ", " ");
-  txt = txt + "h";
-  return txt;
+  var ix0 = txt.indexOf(":");
+  var ix1 = txt.indexOf(",", ix0) + 2;
+  var ix2 = txt.indexOf("%", ix1) + 1;
+  var cha = txt.indexOf("Charging") !== -1;
+  var dis = txt.indexOf("Discarching") !== -1;
+  var bat = txt.slice(ix1, ix2);
+  var rem = txt.slice(ix2+2, ix2+10);
+  return bat + " " + rem + (cha ? " full" : dis ? " left" : "");
 };
+
+//console.log(get_battery());
+//process.exit();
 
 function get_volume() {
   var got = exec(`amixer sget Master`);
@@ -112,14 +114,14 @@ function refresh_cpu() {
   txt += " cpu";
   cpu = txt;
 };
-setInterval(refresh_cpu, 5000);
+setInterval(refresh_cpu, 2000);
 
 function refresh_mem() {
   var free = os.freemem();
   var total = os.totalmem();
   mem = String(Math.floor((total - free) / total * 100)) + " mem";
 };
-setInterval(refresh_mem, 1000);
+setInterval(refresh_mem, 2000);
 
 function refresh() {
   date = get_date();
@@ -128,4 +130,4 @@ function refresh() {
   window = get_window();
   console.log(`${cpu} | ${mem}%{c}${window}%{r}${volume} | ${battery} | ${date}`);
 };
-setInterval(refresh, 1000);
+setInterval(refresh, 500);

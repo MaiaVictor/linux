@@ -1,6 +1,5 @@
 execute pathogen#infect()
 
-
 set foldmethod=expr
 set foldexpr=GetPotionFold(v:lnum)
 set foldminlines=0
