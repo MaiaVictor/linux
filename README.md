@@ -35,6 +35,11 @@
 
 - Added `~/.config/bspwm/bspwmrc` and `~/.config/sxhkd/sxhkdrc`
 
+## Font stuff
+
+- The `fontsel` command allows me to pick a font that can then be passed to
+  Lemonbar with the `lemonbar -f FONT_NAME` command.
+
 ## Readlist
 
 - https://dotfiles.github.io/tutorials/
