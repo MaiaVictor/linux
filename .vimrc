@@ -261,7 +261,7 @@ let g:ctrlp_by_filename = 0
     \ &ft=='lispell'    ? ':!node ~/Viclib/lispedia/bin/lis.js reduce %:r<cr>' :
     \ ':!time cc %<cr>')
 
-:nnoremap <expr> <leader>m ':!clear<cr>:w!<cr>'
+:nnoremap <expr> <leader>m ':q!<cr>'
 :nnoremap <expr> <leader>w ':w!<cr>:!clear; npm run build<cr>:!osascript ~/dev/me/refresh_chrome.applescript &<cr>'
 :nnoremap <expr> <leader>p ':w!<cr>:!clear; npm run publish<cr>'
 :nnoremap <expr> <leader>x ':x!<cr>'
