@@ -47,3 +47,5 @@
 - https://dotfiles.github.io/tutorials/
 
 - http://eirenicon.org/knowledge-base/building-a-bspwm-desktop-a-guide/
+
+- nixos to try on xps https://hydra.nixos.org/build/124341169
