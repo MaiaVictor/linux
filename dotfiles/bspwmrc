@@ -19,7 +19,7 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
 # Panel
-/home/v/.nvm/versions/node/v14.4.0/bin/node ~/linux/bar.js | lemonbar -p -f "-etl-*-medium-*-normal-*-24-*" &
+/home/v/.nvm/versions/node/v14.4.0/bin/node ~/linux/dotfiles/bar.js | lemonbar -p -f "-etl-*-medium-*-normal-*-24-*" &
 
 # Redshift <3
 redshift-gtk &
