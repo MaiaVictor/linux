@@ -20,7 +20,6 @@ bspc rule -a Screenkey manage=off
 
 # Panel
 /home/v/.nvm/versions/node/v14.4.0/bin/node ~/linux/bar.js | lemonbar -p -f "-etl-*-medium-*-normal-*-24-*" &
-#tint2 &
 
 # Redshift <3
 redshift-gtk &
@@ -39,7 +38,3 @@ xinput set-prop "DLL096D:01 06CB:CDE6 Touchpad" "Coordinate Transformation Matri
 
 # Set background image
 feh --bg-scale ~/Pictures/castle.jpg
-
-#node ~/linux/bar.js | lemonbar -p -f "-etl-*-medium-*-normal-*-24-*" &
-
-#/home/v/linux/bar2.sh | lemonbar -p &
